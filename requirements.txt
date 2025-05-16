@@ -1,0 +1,5 @@
+chromadb==0.4.24
+nltk==3.8.1
+sentence-transformers==2.6.1
+prompt_toolkit==3.0.43
+torch --index-url https://download.pytorch.org/whl/cu121
