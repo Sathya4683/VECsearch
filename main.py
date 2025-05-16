@@ -1,7 +1,12 @@
-#import has to be done here:
-
-
-
+import os
+#import custom embedding model and vector DB
+from scripts.custom_embedding_model import CustomEmbeddingModel
+from scripts.custom_vectordb import CustomVectorDatabase, CustomCollection
+#import functions from text_preprocessing and run_query
+from scripts.text_preprocessing import load_stopwords
+from scripts.run_query import process_paragraphs, process_sentences, read_file, run_query
+#import the functions necessary for the interactive prompt toolkit view
+from scripts.prompt_toolkit import interactive_highlight_view
 
 # Main function
 def main():
