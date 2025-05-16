@@ -1,0 +1,5 @@
+Original Query: what is digestion
+Tokens: what is digestion
+After Stopword Removal: digestion
+After Lemmatization: digestion
+Preprocessed Query: digestion

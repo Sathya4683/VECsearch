@@ -1,6 +1,6 @@
 import os
-from text_preprocessing import sent_tokenize, preprocess_text, word_tokenize
-from save_process_embeddings import save_embeddings_matrix, save_preprocessed_text
+from .text_preprocessing import sent_tokenize, preprocess_text, word_tokenize
+from .save_process_embeddings import save_embeddings_matrix, save_preprocessed_text
 
 # Functions to process text and interact with the vector database
 def read_file(filepath):

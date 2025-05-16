@@ -14,7 +14,7 @@ def word_tokenize(text):
     return words
 
 # Load stopwords from file
-def load_stopwords(filepath="stopwords.txt"):
+def load_stopwords(filepath="assets/stopwords.txt"):
     """Load stopwords from a file into a set for O(1) lookup."""
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
