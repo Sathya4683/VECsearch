@@ -1,4 +1,4 @@
-# PREPROCESSED.md for preprocessed_outputs
+# PREPROCESSED.md
 
 This directory contains an example of how the preprocessed outputs such as the embeddings of the query, sentences, paragraphs along with cleaning (lemmatization, stopword removal and tokenization)
 
