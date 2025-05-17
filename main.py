@@ -38,9 +38,9 @@ def main():
     content = read_file(file_path)
 
     # Initialize custom vector database and models (similar to how one would intialize a chromdb client and create a collection)
-    chroma_client = CustomVectorDatabase()
-    collection_sentences = chroma_client.get_or_create_collection(name="sentences")
-    collection_paragraphs = chroma_client.get_or_create_collection(name="paragraphs")
+    custom_client = CustomVectorDatabase()
+    collection_sentences = custom_client.get_or_create_collection(name="sentences")
+    collection_paragraphs = custom_client.get_or_create_collection(name="paragraphs")
 
     # Create embedding models
     sentence_model = CustomEmbeddingModel()
