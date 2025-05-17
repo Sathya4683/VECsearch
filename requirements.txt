@@ -4,3 +4,4 @@ torch
 langchain
 langchain-community
 prompt_toolkit
+langchain_google_genai

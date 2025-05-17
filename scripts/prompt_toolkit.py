@@ -1,3 +1,4 @@
+from unittest import result
 from prompt_toolkit import Application
 from prompt_toolkit.key_binding import KeyBindings
 from prompt_toolkit.layout import Layout
@@ -39,7 +40,8 @@ def interactive_highlight_view(highlight_ids, id_map):
 
     @kb.add('q')
     def exit_(event):
-        event.app.exit()
+        event.app.exit(result="return_to_prompt")
+
 
     # Create the UI layout
     content_control = FormattedTextControl(get_text)
@@ -54,4 +56,7 @@ def interactive_highlight_view(highlight_ids, id_map):
 
     # Create and run the application
     app = Application(layout=layout, key_bindings=kb, full_screen=True, style=style)
-    app.run()
+    result = app.run()
+    if result == "return_to_prompt":
+        return
+    

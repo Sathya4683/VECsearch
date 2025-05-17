@@ -8,6 +8,8 @@ from scripts.run_query import process_paragraphs, process_sentences, read_file, 
 #import the functions necessary for the interactive prompt toolkit view
 from scripts.prompt_toolkit import interactive_highlight_view
 
+from rag import generate_response
+
 # Main function
 def main():
     # Get user input
@@ -35,7 +37,7 @@ def main():
     # Read content from file
     content = read_file(file_path)
 
-    # Initialize custom vector database and models
+    # Initialize custom vector database and models (similar to how one would intialize a chromdb client and create a collection)
     chroma_client = CustomVectorDatabase()
     collection_sentences = chroma_client.get_or_create_collection(name="sentences")
     collection_paragraphs = chroma_client.get_or_create_collection(name="paragraphs")
@@ -51,8 +53,8 @@ def main():
     print("Processing paragraphs...")
     paragraph_id_map = process_paragraphs(content, collection_paragraphs, paragraph_model, stopwords, output_dir)
 
-    # Run queries
     print("Running queries...")
+    # Run queries
     sentence_result = run_query(collection_sentences, query_text, sentence_model, stopwords, n_results=n_sentences, output_dir=output_dir)
     paragraph_result = run_query(collection_paragraphs, query_text, paragraph_model, stopwords, n_results=n_paragraphs, output_dir=output_dir)
 
@@ -72,11 +74,27 @@ def main():
         print(f"{i+1}. {paragraph_id_map[id_][:100]}...")
 
     # Interactive view
-    choice = input("View sentence-wise or paragraph-wise? (s/p): ").strip().lower()
-    if choice == "s":
-        interactive_highlight_view(top_sentence_ids, sentence_id_map)
-    elif choice == "p":
-        interactive_highlight_view(top_paragraph_ids, paragraph_id_map)
+    while True:
+        choice = input("View sentence-wise or paragraph-wise or RAG functionality? (s/p/RAG, type 'exit' to quit): ").strip().lower()
+        if choice == "exit":
+            break
+        elif choice == "s":
+            interactive_highlight_view(top_sentence_ids, sentence_id_map)
+        elif choice == "p":
+            interactive_highlight_view(top_paragraph_ids, paragraph_id_map)
+        elif choice == "rag":
+            # Concatenate top 2 sentences and top 2 paragraphs as context
+            context_sentences = "\n".join([sentence_id_map[id_] for id_ in top_sentence_ids[:2]])
+            context_paragraphs = "\n".join([paragraph_id_map[id_] for id_ in top_paragraph_ids[:2]])
+            combined_context = context_sentences + "\n\n" + context_paragraphs
+
+            user_query = input("Enter your question for RAG (with relevance to the intial query provided): ")
+            answer = generate_response(user_query, combined_context)
+            print("\nResponse from RAG:\n")
+            print(answer)
+        else:
+            print("Invalid choice. Please enter 's', 'p', or 'exit'.")
+
 
 if __name__ == "__main__":
     main()
