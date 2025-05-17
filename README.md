@@ -43,22 +43,22 @@ python main.py
 ```
 ### Step 5: Using the Application
 
-1. **Enter a Query:**:
+1. **Enter a Query**
    - input the source text simple (type in "assets/sample/sample.txt" to use the sample text document provided)
    - input the source stopwords dataset (type in "assets/sample/stopwords.txt" to use the sample stopwords document provided)
    - input your search query (e.g., "Plants making food?").
    - also input the value of "k" (top K results) when prompted. Can type in "all" for all matches in descending order of the similarity score. 
 
-2. **Choose a Retrieval Mode**:
+2. **Choose a Retrieval Mode**
    - Select whether to view sentence-wise, paragraph-wise, or RAG-based results when prompted.
 
-3. **View Top Matches**:
+3. **View Top Matches**
    - The application will display top matching sentences or paragraphs based on semantic similarity to your query.
 
-4. **Navigate the Results**:
+4. **Navigate the Results**
    - Use arrow keys in the interactive CLI to highlight and scroll through results for better readability. (refer CONTROLS.md)
 
-5. **Generate a RAG Response:**:
+5. **Generate a RAG Response**
    - If you choose the RAG option, the app will combine the top retrieved sentences and paragraphs and send them, along with your question, to  the Google Gemini API for a concise and context-aware answer.
 
 ## License
